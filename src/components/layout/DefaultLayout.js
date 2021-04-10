@@ -4,7 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Header from "./Partial/Header";
 import Footer from "./Partial/Footer";
 
-import "./defaultLayout.css";
+import "./defaultLayout.style.css";
 
 
 export const DefaultLayout = ({children}) => {

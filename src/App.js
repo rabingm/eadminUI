@@ -1,5 +1,6 @@
 import DefaultLayout from "./components/layout/DefaultLayout";
 import Login from "./pages/login/Login";
+import PasswordReset from "./pages/password-reset/PasswordReset";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "react-bootstrap";
@@ -15,7 +16,10 @@ function App() {
           
           <Route path="/Dashboard"><Dashboard/></Route>
 
-          <Route path="/"><Login/></Route>
+          <Route path="/password-reset" exact><PasswordReset/></Route>
+
+
+          <Route exact path="/"><Login/></Route>
         </Switch>
         
       </Router>

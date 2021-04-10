@@ -1,9 +1,11 @@
 import React from 'react'
+import { LoginForm } from "../../components/login-form/LoginForm";
+import "./login.style.css";
 
 export const Login = () => {
     return (
-        <div>
-            Login page
+        <div className= "login-page bg-dark">
+            <LoginForm/>
         </div>
     )
 }
