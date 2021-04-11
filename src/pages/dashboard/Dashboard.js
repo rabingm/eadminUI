@@ -5,7 +5,7 @@ export const Dashboard = () => {
     return (
         <div>
             <DefaultLayout>
-                Welcome to admin adshboard
+                
             </DefaultLayout>
         </div>
     )

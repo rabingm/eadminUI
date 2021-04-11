@@ -1,30 +1,27 @@
-import React from 'react'
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Header from "./Partial/Header";
 import Footer from "./Partial/Footer";
 
 import "./defaultLayout.style.css";
+import SideBarNav from "../sidebar/SideBarNav";
 
+export const DefaultLayout = ({ children }) => {
+  return (
+    <div className="default-layout">
+      <div className="left-bar">
+        <div className="admin-log   p-2 mb-5">Admin Pannel</div>
+          <SideBarNav/>
+      </div>
 
-export const DefaultLayout = ({children}) => {
-    return (
-        <Container fluid>
-            <Row>
-                <Col className="left-bar">
-                Left Menu
-                </Col>
-                <Col xs ={8}>
-                <div className = "Main">
-                <Header/>
-                {children}
-                <Footer/>
-                </div>
-                </Col>
-            </Row>
-            
-        </Container>
-    )
-}
+      <div className="Main">
+        <Header />
+        {children}
+        <Footer />
+      </div>
+    </div>
+  );
+};
 
 export default DefaultLayout;

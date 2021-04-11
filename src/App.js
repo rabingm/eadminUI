@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import Dashboard from "./pages/dashboard/Dashboard";
 
 import "./App.css";
+import { Category } from "./pages/category/Category";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
       <Router>
         <Switch>
           
-          <Route path="/Dashboard"><Dashboard/></Route>
+          <Route path="/dashboard"><Dashboard/></Route>
+          <Route path="/category"><Category/></Route>
+
 
           <Route path="/password-reset" exact><PasswordReset/></Route>
 
