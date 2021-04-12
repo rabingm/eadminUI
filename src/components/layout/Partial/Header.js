@@ -8,10 +8,10 @@ export const Header = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-          <i class="fas fa-bell text-success"></i>
+          <i className="fas fa-bell text-success"></i>
           </Navbar.Text>
           <Navbar.Text>
-          <i class="fas fa-user" ></i>
+          <i className="fas fa-user" ></i>
           </Navbar.Text>
           <Navbar.Text>
           Log Out

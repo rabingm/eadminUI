@@ -12,6 +12,7 @@ export const DefaultLayout = ({ children }) => {
     <div className="default-layout">
       <div className="left-bar">
         <div className="admin-log   p-2 mb-5">Admin Pannel</div>
+        <hr className="devider" />
           <SideBarNav/>
       </div>
 

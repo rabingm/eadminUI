@@ -1,3 +1,7 @@
 .left-bar{
     background-color: black;
 }
+
+hr.devider{
+    border-top: 1px solid white;
+}
