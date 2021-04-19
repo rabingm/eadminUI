@@ -8,21 +8,17 @@ import {
 	fetchCategories,
 } from "../../pages/category/categoryAction";
 
-const initialState = {
-	name: "",
-};
-export const AddCategoryForm = () => {
+export const EditCategoryForm = ({ categoryEdit }) => {
 	const dispatch = useDispatch();
-
+	console.log(categoryEdit);
 	const { isLoading, status, message, categoryList } = useSelector(
 		state => state.category
 	);
+	const [category, setCategory] = useState(categoryEdit);
 
 	useEffect(() => {
-		dispatch(fetchCategories());
-	}, [dispatch]);
-
-	const [category, setCategory] = useState(initialState);
+		setCategory(category);
+	}, [dispatch, category]);
 
 	const handleOnChange = e => {
 		const { name, value } = e.target;
@@ -35,8 +31,10 @@ export const AddCategoryForm = () => {
 
 	const handleOnSubmit = e => {
 		e.preventDefault();
-		dispatch(addNewCategory(category));
+		// dispatch(addNewCategory(category));
 		///we going to find the way to call our server
+
+		console.log(category);
 	};
 
 	return (
@@ -51,7 +49,6 @@ export const AddCategoryForm = () => {
 			<Form onSubmit={handleOnSubmit}>
 				<Form.Row>
 					<Form.Group as={Col} controlId="">
-						<Form.Label>New Category</Form.Label>
 						<Form.Control
 							name="name"
 							type="text"
@@ -62,26 +59,10 @@ export const AddCategoryForm = () => {
 						/>
 					</Form.Group>
 
-					<Form.Group as={Col} controlId="formGridState">
-						<Form.Label>Select Parent Category</Form.Label>
-						<Form.Control
-							as="select"
-							name="parentCat"
-							onChange={handleOnChange}
-							// defaultValue={category.parentCat}
-						>
-							<option>Choose...</option>
-							{categoryList?.map((row, i) => (
-								<option key={i} value={row._id}>
-									{row.name}
-								</option>
-							))}
-						</Form.Control>
-					</Form.Group>
+					<Button variant="primary" type="submit">
+						Submit
+					</Button>
 				</Form.Row>
-				<Button variant="primary" type="submit">
-					Submit
-				</Button>
 			</Form>
 		</div>
 	);

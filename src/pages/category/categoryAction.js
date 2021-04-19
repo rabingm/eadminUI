@@ -1,25 +1,68 @@
-import { saveCategory } from "../../apis/categoriAPI.js";
 import {
-  requestPending,
-  addCategorySuccess,
-  fetchAllCategorySuccess,
-  requestFail,
-} from "./categorySlice.js";
+	requestPending,
+	addCategorySuccess,
+	fetchAllCategorySuccess,
+	requestFail,
+	deleteCatsSuccess,
+} from "./categorySlice";
 
-export const addNewCategory = (frmDt) => async (dispatch) => {
-  ///Call api or reducer to update state
+import {
+	saveCategory,
+	getCategories,
+	deleteCategories,
+} from "../../apis/categoriAPI";
 
-  try {
-    // dispatch(requestPending());
-    const result = await saveCategory(frmDt);
-    console.log(result)
-    dispatch(addCategorySuccess(result));
-  } catch (error) {
-    console.log(error)
-    const err = {
-      status: "error",
-      message: error.message,
-    };
-    dispatch(requestFail(err));
-  }
+export const addNewCategory = frmDt => async dispatch => {
+	try {
+		dispatch(requestPending());
+
+		const result = await saveCategory(frmDt); //{status, message}
+
+		dispatch(addCategorySuccess(result));
+
+		result.status === "success" && dispatch(fetchCategories());
+	} catch (error) {
+		const err = {
+			status: "error",
+			message: error.message,
+		};
+
+		dispatch(requestFail(err));
+	}
+};
+
+export const fetchCategories = () => async dispatch => {
+	try {
+		dispatch(requestPending());
+
+		const result = await getCategories(); //{status, message, result:[]}
+
+		dispatch(fetchAllCategorySuccess(result));
+	} catch (error) {
+		const err = {
+			status: "error",
+			message: error.message,
+		};
+
+		dispatch(requestFail(err));
+	}
+};
+
+export const removeCategories = idArg => async dispatch => {
+	try {
+		dispatch(requestPending());
+
+		const result = await deleteCategories(idArg); //{status, message, result:[]}
+
+		dispatch(deleteCatsSuccess(result));
+
+		result.status === "success" && dispatch(fetchCategories());
+	} catch (error) {
+		const err = {
+			status: "error",
+			message: error.message,
+		};
+
+		dispatch(requestFail(err));
+	}
 };

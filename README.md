@@ -1,7 +1,9 @@
-# Getting Started 
-This is the ecommerce admin pannel.
+# Getting Started
 
-## How to use
-- Clone poroject "git clone ."
-- "npm install" && "npm start"
+This is the e-commerce admin panel.
 
+## How to run
+
+- Clone project `git clone ...`
+- `npm install`
+- 'npm start`

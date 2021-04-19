@@ -1,7 +1,38 @@
-.left-bar{
-    background-color: black;
+.default-layout {
+	display: grid;
+	grid-template-columns: 250px auto;
 }
 
-hr.devider{
-    border-top: 1px solid white;
+.navbar-text {
+	margin-right: 1rem;
+}
+
+.left-bar {
+	background: rgb(26, 25, 25);
+	height: 100vh;
+	color: white;
+	/* width: 33%; */
+	/* position: fixed; */
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+	z-index: 99;
+}
+
+.main {
+	/* width: auto; */
+}
+
+hr.divider {
+	border-top: 1px solid white;
+}
+
+.footer {
+	background: grey;
+	color: wheat;
+	min-height: 100px;
+	position: fixed;
+	width: 100%;
+	padding: 1rem;
+	margin-top: 1rem;
 }

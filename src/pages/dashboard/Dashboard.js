@@ -1,14 +1,12 @@
-import React from 'react'
-import DefaultLayout from '../../components/layout/DefaultLayout'
+import React from "react";
+import DefaultLayout from "../../components/layout/DefaultLayout";
 
-export const Dashboard = () => {
-    return (
-        <div>
-            <DefaultLayout>
-                
-            </DefaultLayout>
-        </div>
-    )
-}
+const Dashboard = () => {
+	return (
+		<DefaultLayout>
+			<div className="dashboard">Welcome to the Admin dashboard</div>
+		</DefaultLayout>
+	);
+};
 
 export default Dashboard;

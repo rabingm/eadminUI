@@ -1,28 +1,28 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Jumbotron, Row } from "react-bootstrap";
+import Footer from "./partials/Footer";
+import Header from "./partials/Header";
 
-import Header from "./Partial/Header";
-import Footer from "./Partial/Footer";
-
-import "./defaultLayout.style.css";
 import SideBarNav from "../sidebar/SideBarNav";
+import "./defaultLayout.style.css";
 
-export const DefaultLayout = ({ children }) => {
-  return (
-    <div className="default-layout">
-      <div className="left-bar">
-        <div className="admin-log   p-2 mb-5">Admin Pannel</div>
-        <hr className="devider" />
-          <SideBarNav/>
-      </div>
+const DefaultLayout = ({ children }) => {
+	return (
+		<div className="default-layout">
+			<div className="left-bar">
+				<div className="admin-log p-2 mb-5">Admin Panned</div>
+				<hr className="divider" />
+				<SideBarNav />
+			</div>
 
-      <div className="Main">
-        <Header />
-        {children}
-        <Footer />
-      </div>
-    </div>
-  );
+			<div className="main">
+				<Header />
+				<Jumbotron>{children}</Jumbotron>
+
+				<Footer />
+			</div>
+		</div>
+	);
 };
 
 export default DefaultLayout;

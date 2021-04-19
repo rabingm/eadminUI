@@ -4,32 +4,32 @@ const initialState = {
 	isLoading: false,
 	status: "",
 	message: "",
-	categoryList: [],
+	deleteMsg: "",
+	productList: [],
 };
 
-const categorySlice = createSlice({
-	name: "category",
+const productSlice = createSlice({
+	name: "product",
 	initialState,
 	reducers: {
 		requestPending: state => {
 			state.isLoading = true;
 		},
-
-		addCategorySuccess: (state, { payload }) => {
+		addProductSuccess: (state, { payload }) => {
 			state.isLoading = false;
 			state.status = payload.status;
 			state.message = payload.message;
 		},
 
-		fetchAllCategorySuccess: (state, { payload }) => {
-			state.categoryList = payload.result;
+		fetchAllProductSuccess: (state, { payload }) => {
+			state.productList = payload.result || [];
 			state.isLoading = false;
 		},
 
-		deleteCatsSuccess: (state, { payload }) => {
+		deleteProductSuccess: (state, { payload }) => {
 			state.isLoading = false;
 			state.status = payload.status;
-			state.message = payload.message;
+			state.deleteMsg = payload.message;
 		},
 
 		requestFail: (state, { payload }) => {
@@ -40,14 +40,14 @@ const categorySlice = createSlice({
 	},
 });
 
-const { reducer, actions } = categorySlice;
+const { reducer, actions } = productSlice;
 
 export const {
 	requestPending,
-	addCategorySuccess,
-	fetchAllCategorySuccess,
+	addProductSuccess,
+	fetchAllProductSuccess,
 	requestFail,
-	deleteCatsSuccess,
+	deleteProductSuccess,
 } = actions;
 
 export default reducer;
