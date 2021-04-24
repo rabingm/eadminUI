@@ -5,13 +5,13 @@ import { addNewProduct } from "../../pages/product/productAction";
 
 import { ProductCatList } from "../product-categorylist/ProductCatList";
 
-const initialState = {
+const initialState = {			
   name: "",
   qty: 0,
-  isAvailable: "off",
+  status: false,
   price: 0,
   salePrice: 0,
-  saleEndDate: null,
+  saleEndDate: "",
   description: "",
   images: [],
   categories: [],
@@ -20,6 +20,8 @@ const initialState = {
 export const AddProductForm = () => {
   const dispatch = useDispatch();
   const [newProduct, setNewProduct] = useState(initialState);
+
+  const [images, setImages] = useState([]);
 
   const { isLoading, status, message } = useSelector((state) => state.product);
 
@@ -35,8 +37,49 @@ export const AddProductForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(addNewProduct(newProduct));
+    const formData = new FormData();
+
+    Object.keys(newProduct).map((key) => {
+      key !== "images" && formData.append(key, newProduct[key]);
+    });
+
+    images.length &&
+      [...images].map((image) => {
+        formData.append("images", image);
+      });
+    dispatch(addNewProduct(formData));
   };
+
+  const onCatSelect = (e) => {
+    const { checked, value } = e.target;
+
+    if (checked) {
+      //put id inside the array
+
+      setNewProduct({
+        ...newProduct,
+        categories: [...newProduct.categories, value],
+      });
+    } else {
+      //take id out of the array
+
+      const updatedCatIds = newProduct.categories.filter((id) => id !== value);
+
+      setNewProduct({
+        ...newProduct,
+        categories: updatedCatIds,
+      });
+    }
+  };
+
+  const handleOnImageSelect = (e) => {
+    const { files } = e.target;
+
+    setImages(files);
+  
+  };
+      console.log(images)
+
 
   return (
     <div>
@@ -47,7 +90,7 @@ export const AddProductForm = () => {
           {message}
         </Alert>
       )}
-      <Form onSubmit={handleOnSubmit}>
+      <Form onSubmit={handleOnSubmit} encType="multipart/form-data">
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -65,11 +108,11 @@ export const AddProductForm = () => {
 
         <Form.Group>
           <Form.Check
-            name="isAvailable"
-            id="isAvailable"
+            name="status"
+            id="status"
             type="switch"
             label="Available"
-            value={newProduct.isAvailable}
+            value={newProduct.status}
             onChange={handleOnchange}
           />
         </Form.Group>
@@ -132,28 +175,30 @@ export const AddProductForm = () => {
           />
         </Form.Group>
 
-        {/* <Form.Group>
-					<Form.Label>Images</Form.Label>
-					<Form.File
-						name="images"
-						id="exampleFormControlFile1"
-						// value={newProduct.images}
-						onChange={handleOnchange}
-						label="Example file input"
-
-					/>
-				</Form.Group> */}
-        <hr />
         <Form.Label>Select the category</Form.Label>
         <br />
-        <ProductCatList />
+        <ProductCatList
+          onCatSelect={onCatSelect}
+          selectedCatIds={newProduct.categories}
+        />
+        <hr />
+        <Form.Group>
+          <Form.Label>Images</Form.Label>
+          <Form.File
+            name="images"
+            id="exampleFormControlFile1"
+            // value={newProduct.images}
+            onChange={handleOnImageSelect}
+            label="Choose Image"
+            multiple
+            accept="image/*"
+          />
+        </Form.Group>
         <br />
-
         <Button variant="primary" type="submit">
           Submit
         </Button>
       </Form>
-
       {isLoading && <Spinner variant="primary" animation="border" />}
     </div>
   );

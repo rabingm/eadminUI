@@ -7,18 +7,29 @@ import {
 	addNewCategory,
 	fetchCategories,
 } from "../../pages/category/categoryAction";
+import { toggleCategoryEditModal } from "../../pages/category/categorySlice";
+import ModalBox from "../modal/ModalBox";
+
+const initialState = {
+	name: "",
+	parentCat: ""
+};
 
 export const EditCategoryForm = ({ categoryEdit }) => {
 	const dispatch = useDispatch();
-	console.log(categoryEdit);
-	const { isLoading, status, message, categoryList } = useSelector(
+
+
+
+	const { isLoading,status, categoryList, message, selectedCategory, show } = useSelector(
 		state => state.category
 	);
-	const [category, setCategory] = useState(categoryEdit);
+	const [category, setCategory] = useState(initialState);
+	
+
 
 	useEffect(() => {
-		setCategory(category);
-	}, [dispatch, category]);
+		setCategory(selectedCategory);
+	}, [dispatch, selectedCategory]);
 
 	const handleOnChange = e => {
 		const { name, value } = e.target;
@@ -37,8 +48,18 @@ export const EditCategoryForm = ({ categoryEdit }) => {
 		console.log(category);
 	};
 
+	const toggleModal =e =>{
+		dispatch(toggleCategoryEditModal())
+	}
+
+
 	return (
+		<ModalBox
+		show={show}
+		toggleModal={toggleModal}
+		>
 		<div className="add-category-form">
+			
 			{isLoading && <Spinner variant="primary" animation="border" />}
 
 			{message && (
@@ -59,11 +80,30 @@ export const EditCategoryForm = ({ categoryEdit }) => {
 						/>
 					</Form.Group>
 
+					<Form.Group as={Col} controlId="formGridState">
+						
+						<Form.Control
+							as="select"
+							name="parentCat"
+							onChange={handleOnChange}
+							defaultValue={category.parentCat}
+						>
+							<option>Choose...</option>
+							{categoryList?.map((row, i) => (
+								<option key={i} value={row._id}
+								selected ={row._id === category.parentCat}>
+									{row.name}
+								</option>
+							))}
+						</Form.Control>
+					</Form.Group>
+
 					<Button variant="primary" type="submit">
 						Submit
 					</Button>
 				</Form.Row>
 			</Form>
 		</div>
+		</ModalBox>
 	);
 };

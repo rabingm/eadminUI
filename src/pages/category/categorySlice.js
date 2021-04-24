@@ -5,6 +5,8 @@ const initialState = {
 	status: "",
 	message: "",
 	categoryList: [],
+	show:false,
+	selectedCategory:{}
 };
 
 const categorySlice = createSlice({
@@ -31,6 +33,12 @@ const categorySlice = createSlice({
 			state.status = payload.status;
 			state.message = payload.message;
 		},
+		toggleCategoryEditModal : state => {
+			state.show =!state.show
+		},
+		selectACategory : (state, {payload}) => {
+			state.selectedCategory =payload
+		},
 
 		requestFail: (state, { payload }) => {
 			state.isLoading = false;
@@ -48,6 +56,8 @@ export const {
 	fetchAllCategorySuccess,
 	requestFail,
 	deleteCatsSuccess,
+	toggleCategoryEditModal,
+	selectACategory
 } = actions;
 
 export default reducer;
