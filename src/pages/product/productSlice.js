@@ -6,7 +6,6 @@ const initialState = {
 	message: "",
 	deleteMsg: "",
 	productList: [],
-	
 };
 
 const productSlice = createSlice({
@@ -33,8 +32,6 @@ const productSlice = createSlice({
 			state.deleteMsg = payload.message;
 		},
 
-		
-
 		requestFail: (state, { payload }) => {
 			state.isLoading = false;
 			state.status = payload.status;
@@ -51,7 +48,6 @@ export const {
 	fetchAllProductSuccess,
 	requestFail,
 	deleteProductSuccess,
-	
 } = actions;
 
 export default reducer;

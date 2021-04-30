@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const rootUrl = "http://localhost:8000/api/v1/";	
+const rootUrl = "http://localhost:8000/api/v1/";
 const prodApi = rootUrl + "product";
 
 export const saveProduct = frmDt => {
@@ -8,8 +8,8 @@ export const saveProduct = frmDt => {
 		try {
 			const { data } = await axios.post(prodApi, frmDt, {
 				headers: {
-					"content-type": "multipart/form-data"
-				}
+					"Content-type": "multipart/form-data",
+				},
 			});
 
 			resolve(data);
