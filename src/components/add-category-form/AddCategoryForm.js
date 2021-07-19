@@ -27,6 +27,8 @@ export const AddCategoryForm = () => {
 	const handleOnChange = e => {
 		const { name, value } = e.target;
 
+		console.log(categoryList)
+
 		setCategory({
 			...category,
 			[name]: value,

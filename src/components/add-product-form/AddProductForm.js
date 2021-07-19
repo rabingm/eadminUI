@@ -8,6 +8,7 @@ const initialState = {
 	name: "",
 	qty: 0,
 	status: false,
+	featured: false,
 	price: 0,
 	salePrice: 0,
 	saleEndDate: "",
@@ -46,6 +47,7 @@ export const AddProductForm = () => {
 			});
 
 		dispatch(addNewProduct(formData));
+		console.log(addNewProduct)
 	};
 
 	const onCatSelect = e => {
@@ -108,6 +110,18 @@ export const AddProductForm = () => {
 						onChange={handleOnchange}
 					/>
 				</Form.Group>
+
+				<Form.Group>
+					<Form.Check
+						name="featured"
+						id="featured"
+						type="switch"
+						label="Add to Featured"
+						value={newProduct.featured}
+						onChange={handleOnchange}
+					/>
+				</Form.Group>
+
 				<Form.Group>
 					<Form.Label>Price</Form.Label>
 					<Form.Control

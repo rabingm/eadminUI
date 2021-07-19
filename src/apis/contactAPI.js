@@ -1,16 +1,12 @@
 import axios from "axios";
 
 const rootUrl = "http://localhost:8000/api/v1/";
-const catApi = rootUrl + "token";
+const conApi = rootUrl + "contactus";
 
-export const tokenAPI = token => {
+export const getNessage = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const { data } = await axios.get(catApi, {
-				headers: {
-					Authorization: token,
-				},
-			});
+			const { data } = await axios.get(conApi);
 
 			resolve(data);
 		} catch (error) {

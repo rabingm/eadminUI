@@ -10,46 +10,56 @@ import EditProduct from "./pages/edit-product/EditProduct";
 import { PrivateRoute } from "./components/private-route/PrivateRoute";
 
 import "./App.css";
+import Profile from "./pages/profile/Profile";
+import OrderTable from "./components/product-table/ProductListTable";
+import Order from "./pages/order/Order";
 
 function App() {
-	return (
-		<div className="App">
-			<Router>
-				<Switch>
-					<PrivateRoute exact path="/dashboard">
-						<Dashboard />
-					</PrivateRoute>
+  return (
+    <div className="App">
+      <Router>
+        <Switch>
+          <PrivateRoute exact path="/dashboard">
+            <Dashboard />
+          </PrivateRoute>
 
-					<PrivateRoute exact path="/category">
-						<Category />
-					</PrivateRoute>
-					<PrivateRoute exact path="/products">
-						<Product />
-					</PrivateRoute>
+          <PrivateRoute exact path="/category">
+            <Category />
+          </PrivateRoute>
+          <PrivateRoute exact path="/products">
+            <Product />
+          </PrivateRoute>
+          <PrivateRoute exact path="/order">
+            <Order />
+          </PrivateRoute>
 
-					<PrivateRoute exact path="/product/new">
-						<AddProduct />
-					</PrivateRoute>
+          <PrivateRoute exact path="/product/new">
+            <AddProduct />
+          </PrivateRoute>
 
-					<PrivateRoute exact path="/product/:_id">
-						<EditProduct />
-					</PrivateRoute>
+          <PrivateRoute exact path="/product/:_id">
+            <EditProduct />
+          </PrivateRoute>
 
-					<Route exact path="/reset-password">
-						<PasswordReset />
-					</Route>
+          <PrivateRoute exact path="/profile/:_id">
+            <Profile />
+          </PrivateRoute>
 
-					<Route exact path="/">
-						<Login />
-					</Route>
+          <Route exact path="/reset-password">
+            <PasswordReset />
+          </Route>
 
-					<Route exact path="*">
-						<h1>404 Page not found</h1>
-					</Route>
-				</Switch>
-			</Router>
-		</div>
-	);
+          <Route exact path="/">
+            <Login />
+          </Route>
+
+          <Route exact path="*">
+            <h1>404 Page not found</h1>
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

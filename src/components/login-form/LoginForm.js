@@ -26,10 +26,8 @@ export const LoginForm = () => {
 
 	useEffect(() => {
 		// !isAuth && sessionStorage.getItem("accessJWT") && dispatch(updateLogin());
-
 		!isAuth && dispatch(userAutoLogin());
-
-		if (isAuth) history.replace(from);
+		if (isAuth) history.replace("/dashboard");
 	}, [isAuth]);
 
 	const handleOnChange = e => {
@@ -41,7 +39,7 @@ export const LoginForm = () => {
 		});
 	};
 
-	const handOnSubmit = e => {
+	const handleOnSubmit = e => {
 		e.preventDefault();
 
 		if (!login.email || !login.password) {
@@ -52,6 +50,8 @@ export const LoginForm = () => {
 	};
 
 	return (
+
+		
 		<div className="login-form">
 			<Card className="p-4">
 				{isLoading && <Spinner variant="primary" animation="border" />}
@@ -64,7 +64,7 @@ export const LoginForm = () => {
 					</Alert>
 				)}
 
-				<Form onSubmit={handOnSubmit}>
+				<Form onSubmit={handleOnSubmit}>
 					<Form.Group controlId="formBasicEmail">
 						<Form.Label>Email address</Form.Label>
 						<Form.Control

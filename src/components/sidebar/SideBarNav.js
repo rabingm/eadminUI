@@ -22,20 +22,20 @@ const SideBarNav = () => {
 					</Link>
 				</li>
 				<li>
-					<Link to="/orders">
+					<Link to="/order">
 						<i className="fas fa-shopping-cart"></i> Orders
 					</Link>
 				</li>
-				<li>
+				{/* <li>
 					<Link to="/users">
 						<i className="fas fa-user"></i> Users
 					</Link>
 				</li>
 				<li>
-					<Link to="/account">
-						<i className="fas fa-cogs text-success"></i> Account
+					<Link to="/profile">
+						<i className="fas fa-cogs text-success"></i> Profile
 					</Link>
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	);

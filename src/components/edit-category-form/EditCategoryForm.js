@@ -6,7 +6,7 @@ import { Form, Col, Button, Spinner, Alert } from "react-bootstrap";
 import { categoryUpdate } from "../../pages/category/categoryAction";
 import { toggleCategoryEditModal } from "../../pages/category/categorySlice";
 
-import ModalBox from "../modal/ModalBox";
+import { CategoryModalBox } from "../modal/ModalBox";
 
 const initialState = {
 	name: "",
@@ -59,7 +59,7 @@ export const EditCategoryForm = () => {
 	};
 
 	return (
-		<ModalBox show={show} toggleModal={toggleModal}>
+		<CategoryModalBox show={show} toggleModal={toggleModal}>
 			<div className="add-category-form">
 				{isLoading && <Spinner variant="primary" animation="border" />}
 
@@ -112,6 +112,6 @@ export const EditCategoryForm = () => {
 					</Form.Row>
 				</Form>
 			</div>
-		</ModalBox>
+		</CategoryModalBox>
 	);
 };

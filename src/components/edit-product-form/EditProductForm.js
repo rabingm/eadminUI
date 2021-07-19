@@ -13,6 +13,7 @@ const initialState = {
 	slug: "",
 	qty: 0,
 	status: true,
+	featured: true,	
 	price: 0,
 	salePrice: 0,
 	saleEndDate: "",
@@ -172,6 +173,19 @@ export const EditProductForm = () => {
 							onChange={handleOnchange}
 						/>
 					</Form.Group>
+
+					<Form.Group>
+						<Form.Check
+							name="featured"
+							id="featured"
+							type="switch"
+							label="Add to Featured"
+							checked={editProduct.status}
+							// value={editProduct.status}
+							onChange={handleOnchange}
+						/>
+					</Form.Group>
+
 					<Form.Group>
 						<Form.Label>Price</Form.Label>
 						<Form.Control

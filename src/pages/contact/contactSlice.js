@@ -4,25 +4,29 @@ const initialState = {
 	isLoading: false,
 	status: "",
 	message: "",
-	product: {},
+	messageList: [],
+	MessageResponse:{},
+	show: false,
 };
 
-const selectedProductSlice = createSlice({
-	name: "editProduct",
+const contactSlice = createSlice({
+	name: "contact",
 	initialState,
 	reducers: {
 		requestPending: state => {
 			state.isLoading = true;
 		},
-		updateProductSuccess: (state, { payload }) => {
+
+		fetchAllMessageSuccess: (state, { payload }) => {
+			state.messageList = payload.result;
 			state.isLoading = false;
-			state.status = payload.status;
-			state.message = payload.message;
 		},
 
-		fetchProductSuccess: (state, { payload }) => {
-			state.product = payload.result || {};
-			state.isLoading = false;
+		toggleMessageModal: state => {
+			state.show = !state.show;
+			if (!state.show) {
+				state.MessageResponse = {};
+			}
 		},
 
 		requestFail: (state, { payload }) => {
@@ -33,12 +37,12 @@ const selectedProductSlice = createSlice({
 	},
 });
 
-const { reducer, actions } = selectedProductSlice;
+const { reducer, actions } = contactSlice;
 
 export const {
 	requestPending,
-	fetchProductSuccess,
-	updateProductSuccess,
+	fetchAllMessageSuccess,
+	toggleMessageModal,
 	requestFail,
 } = actions;
 
