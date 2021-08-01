@@ -109,7 +109,6 @@ export const ListContact = () => {
 										<span>
 										<button type="button" class="btn btn-light">Reply</button>
 										</span>
-										
 										<hr />
 										<hr />
 									</div>
