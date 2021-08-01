@@ -25,7 +25,7 @@ export const ListContact = () => {
 
 	} = useSelector(state => state.contact);
 
-	console.log("from shoiw message",messageList[0].name)
+	console.log("from shoiw message", messageList[0])
 
 	// const [category, setCategory] = useState(initialState);
 
@@ -78,7 +78,7 @@ export const ListContact = () => {
 				<Form onSubmit={handleOnSubmit}>
 					<Form.Row>
 						<Form.Group as={Col} controlId="formGridState">
-							<Form.Control
+							<div
 								as="select"
 								name="parentCat"
 								// onChange={handleOnChange}
@@ -87,14 +87,40 @@ export const ListContact = () => {
 								{/* <option value={null}></option> */}
 
 								{messageList?.map((row, i) => (
-									<Row>
-										<Col>{messageList[i].name}</Col>
-										<Col>{row.text}</Col>
-										<Col>{row.name}</Col>
+									<div>
+
+										<span>
+											<b class="font-weight-bold">From: </b> {row.name}
+										</span>
+										<br />
+										<span>
+											<b class="font-weight-bold">Email:</b> {row.email}
+										</span>
+										<br />
+										<span>
+											<b class="font-weight-bold">Phone: </b> {row.phone}
+										</span>
+										<hr />
+										<span>
+											<small>
+												{row.text}
+											</small>
+										</span>
+										<span>
+										<button type="button" class="btn btn-light">Reply</button>
+										</span>
 										
-									</Row>
+										<hr />
+										<hr />
+									</div>
+									// <Row>
+									// <Col></Col>
+
+									// 	<Col></Col>
+									// </Row>
+
 								))}
-							</Form.Control>
+							</div>
 						</Form.Group>
 					</Form.Row>
 				</Form>
